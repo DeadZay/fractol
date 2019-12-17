@@ -4,9 +4,9 @@ project(fractol C)
 set(CMAKE_C_STANDARD 99)
 
 if (APPLE)
-	set(GRAPHIC_API "-framework AppKit -framework OpenGL -lmlx")
+	set(GRAPHIC_API "-framework AppKit -framework OpenGL -lmlx -pthread")
 elseif(UNIX AND NOT APPLE)
-	set(GRAPHIC_API "-lX11 -lXext -lOpenGL -lmlx")
+	set(GRAPHIC_API "-lX11 -lXext -lOpenGL -lmlx -pthread")
 else()
 	message(FATAL_ERROR "Project Fractol doesn't work on win32 system!")
 endif()
@@ -78,9 +78,10 @@ add_library(ft STATIC
 		libft/ft_strtrim.c
 		libft/ft_tolower.c
 		libft/ft_toupper.c
-		libft/ft_uintlen.c libft/ft_bool.h)
+		libft/ft_uintlen.c)
 
 add_executable(fractol
-		main.c twin.c)
+		main.c
+		twin.c)
 
 target_link_libraries(fractol ft ${GRAPHIC_API})

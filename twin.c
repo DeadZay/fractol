@@ -51,6 +51,7 @@ t_win 		*get_twin(
 	t_win 	*twin;
 	int 	x;
 
+	twin = NULL;
 	if (width <= 0 || height <= 0 || !title
 	|| !(twin = new_twin())
 	|| !(twin->mlx = mlx_init())
