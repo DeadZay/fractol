@@ -1,21 +1,29 @@
 #include "fractol.h"
+#include <stdio.h>
 
-void	show_usage(void)
+/*size_t	mandelbrot()
 {
-	ft_putstr("Usage: ./fractal [ mandelbrot | julia | burningship ]\n");
-	ft_putstr("Example:\n> ./fractal burningship\n(");
-	ft_putstr("Also you can use first word of name to call fractal\n");
-	ft_putstr("Example:\n> ./fractal J\n(It means: Run fractal Julia");
-	exit(1);
+	size_t	i;
+
 }
 
-void	check_arguments(int argc, char **argv)
+void	mandelbrot_set(void)
 {
-	argc == 1 ? show_usage() : 0;
-}
+
+}*/
+
+/*_Bool	choose_fractal(char *arg)
+{
+	const char		c = arg ? (char)ft_tolower(*arg) : '\0';
+
+	if (c == '\0')
+		return (FALSE);
+
+}*/
 
 int 	main(int argc, char **argv)
 {
+	argc != 2 ? show_usage() : 0; //TODO Сделать в несколько потоков
 	check_arguments(argc, argv);
 	return (0);
 }

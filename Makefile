@@ -18,7 +18,7 @@ endif
 
 override CC = gcc
 
-SRC = main.c twin.c
+SRC = main.c twin.c check_arguments.c
 
 OBJ = $(SRC:.c=.o)
 

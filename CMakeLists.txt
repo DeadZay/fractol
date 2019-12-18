@@ -14,7 +14,7 @@ endif()
 include_directories(. libft)
 
 add_library(ft STATIC
-		libft/ft_astrdel.c
+		libft/ft_astr_del.c
 		libft/ft_atoi.c
 		libft/ft_bzero.c
 		libft/ft_isalnum.c
@@ -78,10 +78,11 @@ add_library(ft STATIC
 		libft/ft_strtrim.c
 		libft/ft_tolower.c
 		libft/ft_toupper.c
-		libft/ft_uintlen.c)
+		libft/ft_uintlen.c libft/ft_astr_astr.c libft/ft_astr_len.c libft/ft_astr_tolower.c)
 
 add_executable(fractol
 		main.c
-		twin.c)
+		twin.c
+		check_arguments.c)
 
 target_link_libraries(fractol ft ${GRAPHIC_API})
