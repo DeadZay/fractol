@@ -1,14 +1,5 @@
 #include "fractol.h"
 
-/*_Bool	choose_fractal(char *arg)
-{
-	const char		c = arg ? (char)ft_tolower(*arg) : '\0';
-
-	if (c == '\0')
-		return (FALSE);
-
-}*/
-
 long double		ft_cabsl(t_complex c)
 {
 	return (sqrtl(c.re * c.re + c.im * c.im));
@@ -86,7 +77,29 @@ t_complex 		newton_calc(t_complex z)
 	return (c1);
 }
 
-/*size_t			newton(t_complex c)
+// http://zonakoda.ru/padenie-v-bassejny-nyutona.html
+size_t			newton3(t_complex c)
+{
+	size_t 		i;
+	t_complex	z;
+	t_complex	t;
+
+	i = 0;
+	z = (t_complex){c.re * 0.1L, c.im * 0.1L};
+	while (i < I_MAX)
+	{
+		t = z;
+		z = ft_cmul(z, (t_complex){0.8L, 0.0L});
+		z = ft_cadd(z, (t_complex){0.2L, 0.0L});
+		z = ft_cmul(z, ft_cpowl(z, -4));
+		if (ft_cabsl(z) - ft_cabsl(t) >= 0.1L)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+size_t			newton2(t_complex c)
 {
 	size_t		i;
 	t_complex	z;
@@ -105,35 +118,11 @@ t_complex 		newton_calc(t_complex z)
 		i++;
 	}
 	return (i);
-}*/
+}
 
-size_t			newton(t_complex c)
+// http://grafika.me/node/35
+size_t			newton1(t_complex c)
 {
-/*	for y := -my to my do
-		for x := -mx to mx do
-		begin
-		n := 0;
-	z.x := X * 0.005;
-	z.y := Y * 0.005;
-	d := z;
-	while (sqr(z.x)+sqr(z.y) < max) and (sqr(d.x)+sqr(d.y) > min)
-	and (n < iter) do
-		begin
-		t := z;
-	{z^3 - 1}
-	p := sqr(sqr(t.x)+sqr(t.y));
-	z.x := 2/3*t.x + (sqr(t.x)-sqr(t.y))/(3*p);
-	z.y := 2/3*t.y*(1-t.x/p);{}
-	d.x := abs(t.x - z.x);
-	d.y := abs(t.y - z.y);
-	Inc(n);
-
-	end;
-
-	col := (n*9) mod 255;
-	PaintBox1.Canvas.Pixels[mx+x,my+y]:=RGBTOColor(col,0,col);
-
-	end;*/
 	size_t			i;
 	t_complex		z;
 	t_complex 		d;
@@ -145,8 +134,7 @@ size_t			newton(t_complex c)
 	z = (t_complex){c.re * 0.005L, c.im * 0.005L};
 	d = z;
 	i = 0;
-	while ((sqrtl(z.re) + sqrtl(z.im) < max)
-	&& (sqrtl(d.re) + sqrtl(d.im) > min) && i < I_MAX)
+	while (i < I_MAX)
 	{
 		t = z;
 		p = sqrtl(t.re) + sqrtl(t.im);
@@ -154,6 +142,9 @@ size_t			newton(t_complex c)
 		z.im = 2.0L / 3.0L * t.im * (1 - t.re / p);
 		d.re = fabsl(t.re - z.re);
 		d.im = fabsl(t.im - z.im);
+		if ((sqrtl(z.re) + sqrtl(z.im) < max)
+		&& (sqrtl(d.re) + sqrtl(d.im) >	min))
+			break ;
 		i++;
 	}
 	return (i);
@@ -236,7 +227,7 @@ int 	main(int argc, char **argv)
 		x = 0;
 		while (x < WIDTH)
 		{
-			i = newton((t_complex){
+			i = newton3((t_complex){
 					CX(x),
 					CY(y)}
 					);
