@@ -3,6 +3,25 @@
 # include <mlx.h>
 # include "libft.h"
 
+typedef union 	u_argb{
+	int				color;
+	unsigned char	b: 8;
+	unsigned char	g: 8;
+	unsigned char	r: 8;
+	unsigned char	a: 8;
+}				t_argb;
+
+/*typedef struct		s_argb
+{
+	int 			color;
+	union {
+		unsigned char	b : 8;
+		unsigned char	g : 8;
+		unsigned char	r : 8;
+		unsigned char	a : 8;
+	};
+}					t_argb;*/
+
 typedef struct		s_win
 {
 	void			*mlx;

@@ -78,7 +78,10 @@ add_library(ft STATIC
 		libft/ft_strtrim.c
 		libft/ft_tolower.c
 		libft/ft_toupper.c
-		libft/ft_uintlen.c libft/ft_astr_astr.c libft/ft_astr_len.c libft/ft_astr_tolower.c)
+		libft/ft_uintlen.c
+		libft/ft_astr_astr.c
+		libft/ft_astr_len.c
+		libft/ft_astr_tolower.c)
 
 add_executable(fractol
 		main.c

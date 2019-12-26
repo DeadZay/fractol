@@ -8,43 +8,38 @@ void	show_usage(void)
 	ft_putstr("> ./fractal BURNingSHIP\n\n");
 	ft_putstr("Also you can use first letter of name to call fractal.\n");
 	ft_putstr("For example run fractal Julia:\n> ./fractal J\n");
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
-char 	**get_true_args(void)
+_Bool	arg_check(const char *arg, const char *param)
 {
-	char 	**true_args;
+	if (!arg || !param || (!ft_strcmp(arg, param) || *arg != *param))
+		return (FALSE);
+	return (TRUE);
+}
 
-	if (!(true_args =
-				  (char **)malloc(sizeof(char *) * ((FRACTAL_COUNT * 2) + 1)))
-		|| !(true_args[0] = ft_strdup("mandelbrot"))
-		|| !(true_args[1] = ft_strdup("m"))
-		|| !(true_args[2] = ft_strdup("julia"))
-		|| !(true_args[3] = ft_strdup("j"))
-		|| !(true_args[4] = ft_strdup("burningship"))
-		|| !(true_args[5] = ft_strdup("b")))
-	{
-		ft_astr_del(true_args);
-		return (NULL);
-	}
-	true_args[FRACTAL_COUNT * 2] = NULL;
-	return (true_args);
+void	wrong_argument(int i)
+{
+	ft_putstr("Wrong argument ");
+	ft_putstr(ft_itoa(i));
+	ft_putstr("\n\n");
+	show_usage();
 }
 
 void	check_arguments(int argc, char **argv)
 {
-	char 	**true_args;
+	int		i;
 
 	if (argc == 1)
 		show_usage();
-	if ((true_args = get_true_args()))
-		ft_astr_tolower(argv);
-	else
-		exit(1);
-	if (!ft_astr_astr(argv, true_args))
-	{
-		ft_astr_del(true_args);
-		show_usage();
-	}
-	ft_astr_del(true_args);
+	ft_astr_tolower(argv);
+	i = 0;
+	while (++i < argc)
+		if (arg_check(argv[i], "mandelbrot")
+		|| arg_check(argv[i], "julia")
+		|| arg_check(argv[i], "burningship")
+		|| arg_check(argv[i], "newton"))
+			continue;
+		else
+			wrong_argument(i);
 }
