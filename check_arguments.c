@@ -13,7 +13,7 @@ void	show_usage(void)
 
 _Bool	arg_check(const char *arg, const char *param)
 {
-	if (!arg || !param || (!ft_strcmp(arg, param) || *arg != *param))
+	if (!arg || !param || (!ft_strcmp(arg, param) && *arg != *param))
 		return (FALSE);
 	return (TRUE);
 }
@@ -38,6 +38,7 @@ void	check_arguments(int argc, char **argv)
 		if (arg_check(argv[i], "mandelbrot")
 		|| arg_check(argv[i], "julia")
 		|| arg_check(argv[i], "burningship")
+		|| arg_check(argv[i], "spider")
 		|| arg_check(argv[i], "newton"))
 			continue;
 		else

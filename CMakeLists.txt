@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(fractol C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKEVENT_C_STANDARD 99)
+
+add_compile_options(-Wall -Wextra -Werror)
 
 if (APPLE)
 	set(GRAPHIC_API "-framework AppKit -framework OpenGL -lmlx -pthread")
@@ -84,8 +86,15 @@ add_library(ft STATIC
 		libft/ft_astr_tolower.c)
 
 add_executable(fractol
-		main.c
 		twin.c
-		check_arguments.c)
+		check_arguments.c
+		fractol.c
+		ft_cpowl.c
+		ft_cabsl.c
+		ft_cdiv.c
+		ft_cadd.c
+		ft_cmul.c
+		ft_csub.c
+		main.c)
 
 target_link_libraries(fractol ft ${GRAPHIC_API})

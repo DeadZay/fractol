@@ -2,15 +2,15 @@
 
 .SECONDARY: $(OBJ)
 
-UNAME_S := $(shell uname -s)
+UNAMEVENT_S := $(shell uname -s)
 
 override CFLAGS = -Wall -Wextra -Werror
 
 FLAGS = $(CFLAGS) -pthread -Llibft -lft -lmlx
 
-ifeq ($(UNAME_S),Darwin)
+ifeq ($(UNAMEVENT_S),Darwin)
     FLAGS += -framework AppKit -framework OpenGL
-else ifeq ($(UNAME_S),Linux)
+else ifeq ($(UNAMEVENT_S),Linux)
     FLAGS += -lX11 -lXext -lOpenGL
 else
 	exit 1
@@ -18,7 +18,8 @@ endif
 
 override CC = gcc
 
-SRC = main.c twin.c check_arguments.c
+SRC = 	twin.c check_arguments.c fractol.c ft_cpowl.c ft_cabsl.c ft_cdiv.c \
+		ft_cadd.c ft_cmul.c ft_csub.c main.c
 
 OBJ = $(SRC:.c=.o)
 

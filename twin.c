@@ -51,10 +51,11 @@ t_win 		*get_twin_mlx(
 	int 	x;
 
 	twin = NULL;
-	if (width <= 0 || height <= 0 || !title
-	|| !(twin = new_twin(NULL))
-	|| !(twin->mlx = mlx)
-	|| !(twin->win = mlx_new_window(twin->mlx, width, height, title))
+	if (!(twin = new_twin(mlx))
+	|| !(twin->win = mlx_new_window(twin->mlx,
+			width > 0 ? width : WIDTH,
+			height > 0 ? height : HEIGHT,
+			title ? title : TITLE))
 	|| !(twin->img = mlx_new_image(twin->mlx, width, height))
 	|| !(twin->data = (int *)mlx_get_data_addr(twin->img, &x, &x, &x)))
 	{
