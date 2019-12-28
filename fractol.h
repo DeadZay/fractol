@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:18:36 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:34:41 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/28 13:45:51 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@
 # include "libft/libft.h"
 # include "ft_complex.h"
 # include "ft_mlx.h"
-# include <fcntl.h>
-# include <pthread.h>
-# include <math.h>
 
 /*
 ** ************************************************************************** **
@@ -40,7 +37,7 @@
 ** ************************************************************************** **
 */
 
-typedef enum 		e_fractol_type
+typedef enum		e_fractol_type
 {
 	FRACTOL_MANDELBROT = 'm',
 	FRACTOL_JULIA = 'j',
@@ -48,7 +45,7 @@ typedef enum 		e_fractol_type
 	FRACTOL_SPIDER = 's'
 }					t_fractol_type;
 
-typedef t_point 	t_fpoint;
+typedef t_point		t_fpoint;
 
 typedef struct		s_tpoint2d
 {

@@ -3,12 +3,16 @@ project(fractol C)
 
 set(CMAKEVENT_C_STANDARD 99)
 
+add_custom_target(f
+		COMMAND make
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_compile_options(-Wall -Wextra -Werror)
 
 if (APPLE)
-	set(GRAPHIC_API "-framework AppKit -framework OpenGL -lmlx -pthread")
+	set(GRAPHIC_API "-framework AppKit -framework OpenGL -lmlx")
 elseif(UNIX AND NOT APPLE)
-	set(GRAPHIC_API "-lX11 -lXext -lOpenGL -lmlx -pthread")
+	set(GRAPHIC_API "-lX11 -lXext -lOpenGL -lmlx")
 else()
 	message(FATAL_ERROR "Project Fractol doesn't work on win32 system!")
 endif()

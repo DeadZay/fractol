@@ -6,7 +6,7 @@ UNAMEVENT_S := $(shell uname -s)
 
 override CFLAGS = -Wall -Wextra -Werror
 
-FLAGS = $(CFLAGS) -pthread -Llibft -lft -lmlx
+FLAGS = $(CFLAGS) -Llibft -lft -lmlx
 
 ifeq ($(UNAMEVENT_S),Darwin)
     FLAGS += -framework AppKit -framework OpenGL
