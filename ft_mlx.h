@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_mlx.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/28 13:17:56 by fcodi             #+#    #+#             */
+/*   Updated: 2019/12/28 13:27:34 by fcodi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_MLX_H
 # define FT_MLX_H
-# include <mlx.h>
-# include "ft_mlx_events.h"
-# include "ft_mlx_util.h"
-# include "ft_complex.h"
-# include "libft.h"
+
+/*
+** ************************************************************************** **
+** Define
+** ************************************************************************** **
+*/
+
 # ifndef WIDTH
 #  define WIDTH 640
 # endif
@@ -16,6 +30,23 @@
 # endif
 # define KEY_COUNT 0x77
 # define BUTTON_COUNT 3
+
+/*
+** ************************************************************************** **
+** Include
+** ************************************************************************** **
+*/
+
+# include <mlx.h>
+# include "ft_mlx_events.h"
+# include "ft_complex.h"
+# include "libft.h"
+
+/*
+** ************************************************************************** **
+** Typedef, struct, enum and union
+** ************************************************************************** **
+*/
 
 typedef struct 		s_point
 {
@@ -62,6 +93,12 @@ typedef struct		s_view
 	t_keyboard		keyboard;
 }					t_view;
 
+/*
+** ************************************************************************** **
+** Function
+** ************************************************************************** **
+*/
+
 void				destroy_twin(
 						t_win *twin,
 						_Bool destroy_mlx
@@ -77,5 +114,10 @@ t_win 				*get_twin_mlx(
 						char *title,
 						void *mlx
 						);
+void				destroy_tview(t_view *view);
+void				init_tview_attr(t_view *view);
+void				init_tkeyboard(t_view *view);
+void				init_tmouse(t_view *view);
+t_view 				*get_tview(t_win *twin);
 
 #endif

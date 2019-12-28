@@ -95,6 +95,13 @@ add_executable(fractol
 		ft_cadd.c
 		ft_cmul.c
 		ft_csub.c
-		main.c)
+		main.c
+		tview.c
+		tview_init.c
+		tfractol.c
+		tfractol_util.c
+		fractol_event.c
+		fractol_event_func.c
+		fractol_calc.c)
 
 target_link_libraries(fractol ft ${GRAPHIC_API})
