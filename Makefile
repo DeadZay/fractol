@@ -51,7 +51,7 @@ clean:
 	$(RM) -f $(OBJ)
 	$(MAKE) -C libft clean
 
-fclean:
+fclean: clean
 	$(RM) -f $(NAME)
 	$(MAKE) -C libft fclean
 
