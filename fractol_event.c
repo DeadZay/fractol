@@ -6,38 +6,32 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:29:26 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:29:54 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:25:34 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int 			e_close(void *param)
+int				e_close(void *param)
 {
 	destroy_tfractol(param);
 	exit(EXIT_SUCCESS);
 }
 
-int 			e_key_press(int keycode, void *param)
+int				e_key_press(int keycode, void *param)
 {
 	t_fractol	*fractol;
-	t_view		*view;
 
 	if (keycode == KEY_ESCAPE)
 		return (e_close(param));
 	fractol = param;
-	view = ((t_fractol *)param)->view;
 	if (keycode == KEY_R || keycode == KEY_G || keycode == KEY_B)
 		change_color(fractol, keycode);
-	if (keycode == KEY_NUM_CLEAR)
+	if (keycode == KEY_NUM_CLEAR || keycode == KEY_DELETE
+	|| keycode == KEY_FORWARDDELETE)
 		reset_fractol(fractol);
 	if (keycode >= KEY_LEFTARROW && keycode <= KEY_UPARROW)
 		change_view(fractol, keycode);
-	if (!view->keyboard.key[keycode])
-	{
-		view->keyboard.key[keycode] = TRUE;
-		view->keyboard.current_pressed++;
-	}
 	if (keycode == KEY_NUM_PLUS || keycode == KEY_NUM_MINUS)
 		change_zoom(fractol, MOUSE_EVENT_NONE, keycode);
 	return (EXIT_SUCCESS);
@@ -61,7 +55,7 @@ int				e_mouse_press(int button, int x, int y, void *param)
 
 int				e_mouse_move(int x, int y, void *param)
 {
-	t_fractol		*fractol;
+	t_fractol	*fractol;
 
 	fractol = param;
 	if (fractol->move && fractol->letter == FRACTOL_JULIA)

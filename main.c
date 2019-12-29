@@ -6,13 +6,13 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:37:56 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:37:58 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:26:51 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-_Bool 				cycle(t_fractol *fractol)
+_Bool				cycle(t_fractol *fractol)
 {
 	size_t			current;
 	t_point2d		point;
@@ -27,9 +27,9 @@ _Bool 				cycle(t_fractol *fractol)
 		{
 			current = point.x + point.y * WIDTH;
 			if (!fractol->refresh_color)
-				fractol->i[current] =
+				fractol->iarray[current] =
 						escape(fractol, get_fpoint(fractol, point));
-			twin->data[current] = get_color(fractol, fractol->i[current],
+			twin->data[current] = get_color(fractol, fractol->iarray[current],
 					(t_point){point.x, point.y});
 			point.x++;
 		}
@@ -40,9 +40,9 @@ _Bool 				cycle(t_fractol *fractol)
 	return (TRUE);
 }
 
-int 	main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
-	t_fractol	*fractol;
+	t_fractol		*fractol;
 
 	check_arguments(argc, argv);
 	if (!(fractol = get_tfractol(NULL, *argv[1]))

@@ -6,13 +6,13 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:38:09 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:38:09 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:33:37 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_mlx.h"
 
-void		destroy_twin(t_win *twin, _Bool destroy_mlx)
+void			destroy_twin(t_win *twin, _Bool destroy_mlx)
 {
 	if (!twin)
 		return ;
@@ -35,12 +35,11 @@ void		destroy_twin(t_win *twin, _Bool destroy_mlx)
 		free(twin->mlx);
 	twin->mlx = NULL;
 	free(twin);
-	twin = NULL;
 }
 
-t_win		*new_twin(void *mlx)
+t_win			*new_twin(void *mlx)
 {
-	t_win	*twin;
+	t_win		*twin;
 
 	if (!(twin = (t_win *)malloc(sizeof(t_win))))
 		return (NULL);
@@ -51,17 +50,11 @@ t_win		*new_twin(void *mlx)
 	return (twin);
 }
 
-t_win 		*get_twin_mlx(
-		int width,
-		int height,
-		char *title,
-		void *mlx
-		)
+t_win			*get_twin_mlx(int width, int height, char *title, void *mlx)
 {
-	t_win 	*twin;
-	int 	x;
+	t_win		*twin;
+	int			x;
 
-	twin = NULL;
 	if (!(twin = new_twin(mlx))
 	|| !(twin->win = mlx_new_window(twin->mlx,
 			width > 0 ? width : WIDTH,
@@ -76,13 +69,9 @@ t_win 		*get_twin_mlx(
 	return (twin);
 }
 
-t_win 		*get_twin(
-		int width,
-		int height,
-		char *title
-		)
+t_win			*get_twin(int width, int height, char *title)
 {
-	void 	*mlx;
+	void		*mlx;
 
 	if (!(mlx = mlx_init()))
 		return (NULL);

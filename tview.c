@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:20:17 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:20:36 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:29:55 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			destroy_tview(t_view *view)
 	free(view);
 }
 
-t_view 			*new_tview(void)
+t_view			*new_tview(void)
 {
 	t_view		*view;
 
@@ -34,12 +34,12 @@ t_view 			*new_tview(void)
 	return (view);
 }
 
-t_view 			*get_tview(t_win *twin)
+t_view			*get_tview(t_win *twin, int width, int height, char *title)
 {
 	t_view		*view;
 
 	if (!(view = new_tview())
-		|| !(view->twin = twin ? twin : get_twin(WIDTH, HEIGHT, TITLE)))
+		|| !(view->twin = twin ? twin : get_twin(width, height, title)))
 	{
 		view ? destroy_tview(view) : FALSE;
 		return (NULL);

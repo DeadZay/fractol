@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:21:12 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:21:22 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:31:55 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			init_tmouse(t_view *view)
 {
-	int 		i;
+	int			i;
 
 	view->mouse.point_a = (t_point){0.4L, -0.4L};
 	view->mouse.point_b = (t_point){0.0L, 0.0L};
@@ -40,6 +40,6 @@ void			init_tview_attr(t_view *view)
 	view->attr.height2 = (long double)HEIGHT * 0.5L;
 	view->attr.width2 = (long double)WIDTH * 0.5L;
 	view->attr.zoom = WIDTH > HEIGHT ? (long double)HEIGHT / 5.0L
-									 : (long double)WIDTH / 5.0L;
+									: (long double)WIDTH / 5.0L;
 	view->attr.zoom_count = 0;
 }

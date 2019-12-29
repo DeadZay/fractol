@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:38:39 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/28 13:38:39 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 13:10:13 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ size_t			burningship(t_complex c, const size_t i_max)
 	return (i);
 }
 
-size_t 			spider(t_complex c, const size_t i_max)
+size_t			spider(t_complex c, const size_t i_max)
 {
 	size_t		i;
 	t_complex	z;
