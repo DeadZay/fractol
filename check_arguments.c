@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:38:50 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/29 14:30:57 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 14:51:00 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	show_usage(void)
 {
-	ft_putstr("Usage: ./fractal [ mandelbrot | julia | burningship ]\n\n");
+	ft_putstr("Usage: ./fractal [ mandelbrot | julia | burningship ");
+	ft_putstr("| spider ]\n\n");
 	ft_putstr("Input is case insensitive. WrItE wHaT eVeR yOu LiKe.\n");
 	ft_putstr("For example run fractal burningship:\n");
 	ft_putstr("> ./fractal BURNingSHIP\n\n");
@@ -25,34 +26,17 @@ void	show_usage(void)
 
 _Bool	arg_check(const char *arg, const char *param)
 {
-	if (!arg || !param || (!ft_strcmp(arg, param) && *arg != *param))
-		return (FALSE);
-	return (TRUE);
-}
-
-void	wrong_argument(int i)
-{
-	ft_putstr("Wrong argument ");
-	ft_putstr(ft_itoa(i));
-	ft_putstr("\n\n");
-	show_usage();
+	if (ft_strcmp(arg, param) == 0 || (ft_strlen(arg) == 1 && *arg == *param))
+		return (TRUE);
+	return (FALSE);
 }
 
 void	check_arguments(int argc, char **argv)
 {
-	int		i;
-
-	if (argc == 1)
-		show_usage();
 	ft_astr_tolower(argv);
-	i = 0;
-	while (++i < argc)
-		if (arg_check(argv[i], "mandelbrot")
-		|| arg_check(argv[i], "julia")
-		|| arg_check(argv[i], "burningship")
-		|| arg_check(argv[i], "spider")
-		|| arg_check(argv[i], "newton"))
-			continue;
-		else
-			wrong_argument(i);
+	if (!(argc == 2 && (arg_check(argv[1], "mandelbrot")
+	|| arg_check(argv[1], "julia")
+	|| arg_check(argv[1], "burningship")
+	|| arg_check(argv[1], "spider"))))
+		show_usage();
 }
