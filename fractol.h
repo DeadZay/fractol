@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:18:36 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/29 14:30:57 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 15:12:00 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct		s_fractol
 	size_t			i_max;
 	_Bool			move;
 	_Bool			refresh_color;
+	long double		power;
 }					t_fractol;
 
 /*
@@ -80,16 +81,21 @@ typedef struct		s_fractol
 
 void				check_arguments(int argc, char **argv);
 void				show_usage(void);
-size_t				mandelbrot(t_complex c, const size_t i_max);
-size_t				julia(t_complex z, t_complex c, const size_t i_max);
-size_t				burningship(t_complex c, const size_t i_max);
-size_t				spider(t_complex c, const size_t i_max);
+size_t				mandelbrot(t_complex c, const size_t i_max,
+					long double power);
+size_t				julia(t_complex z, t_complex c, const size_t i_max,
+					long double power);
+size_t				burningship(t_complex c, const size_t i_max,
+					long double power);
+size_t				spider(t_complex c, const size_t i_max, long double power);
 void				change_zoom(t_fractol *fractol, int button, int keycode);
 void				change_color(t_fractol *fractol, int keycode);
 void				change_view(t_fractol *fractol, int keycode);
+void				change_power(t_fractol *fractol, int keycode);
 int					e_mouse_move(int x, int y, void *param);
 int					e_mouse_press(int button, int x, int y, void *param);
 int					e_key_press(int keycode, void *param);
+int					e_key_release(int keycode, void *param);
 int					e_close(void *param);
 t_fpoint			get_fpoint(t_fractol *fractol, t_point2d point);
 size_t				escape(t_fractol *fractol, t_fpoint point);

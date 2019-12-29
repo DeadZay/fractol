@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:29:26 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/29 14:30:57 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 15:14:46 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int				e_key_press(int keycode, void *param)
 	if (keycode == KEY_ESCAPE)
 		return (e_close(param));
 	fractol = param;
+	if (!fractol->view->keyboard.key[keycode])
+	{
+		fractol->view->keyboard.key[keycode] = TRUE;
+		fractol->view->keyboard.current_pressed++;
+	}
+	if (keycode >= KEY_NUM_0 && keycode <= KEY_NUM_9)
+		change_power(fractol, keycode);
 	if (keycode == KEY_R || keycode == KEY_G || keycode == KEY_B)
 		change_color(fractol, keycode);
 	if (keycode == KEY_NUM_CLEAR || keycode == KEY_DELETE
@@ -34,6 +41,19 @@ int				e_key_press(int keycode, void *param)
 		change_view(fractol, keycode);
 	if (keycode == KEY_NUM_PLUS || keycode == KEY_NUM_MINUS)
 		change_zoom(fractol, MOUSE_EVENT_NONE, keycode);
+	return (EXIT_SUCCESS);
+}
+
+int				e_key_release(int keycode, void *param)
+{
+	t_fractol	*fractol;
+
+	fractol = param;
+	if (fractol->view->keyboard.key[keycode])
+	{
+		fractol->view->keyboard.key[keycode] = FALSE;
+		fractol->view->keyboard.current_pressed++;
+	}
 	return (EXIT_SUCCESS);
 }
 

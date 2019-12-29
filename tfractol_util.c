@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:25:06 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/29 14:30:57 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 15:12:13 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void			event_set(t_fractol *fractol)
 	mlx_hook(win, EVENT_MOUSE_MOVE, MASK_MOUSE_MOVE, e_mouse_move, fractol);
 	mlx_hook(win, EVENT_MOUSE_BUTTON_PRESS, MASK_MOUSE_BUTTON_PRESS,
 			e_mouse_press, fractol);
+	mlx_hook(win, EVENT_KEY_RELEASE, MASK_KEY_RELEASE,
+			e_key_release, fractol);
 	mlx_hook(win, EVENT_CLOSE, MASK_CLOSE, e_close, fractol);
 }

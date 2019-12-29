@@ -31,13 +31,13 @@ size_t					escape(t_fractol *fractol, t_fpoint point)
 	const t_complex		mouse_point = (t_complex){tmouse.x, tmouse.y};
 
 	if (fractol->letter == FRACTOL_MANDELBROT)
-		return (mandelbrot(cpoint, i_max));
+		return (mandelbrot(cpoint, i_max, fractol->power));
 	if (fractol->letter == FRACTOL_JULIA)
-		return (julia((t_complex)cpoint, mouse_point, i_max));
+		return (julia((t_complex)cpoint, mouse_point, i_max, fractol->power));
 	if (fractol->letter == FRACTOL_BURNINGSHIP)
-		return (burningship(cpoint, i_max));
+		return (burningship(cpoint, i_max, fractol->power));
 	if (fractol->letter == FRACTOL_SPIDER)
-		return (spider(cpoint, i_max));
+		return (spider(cpoint, i_max, fractol->power));
 	return (0);
 }
 

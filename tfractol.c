@@ -51,6 +51,7 @@ t_fractol			*get_tfractol(t_view *view, char fractol_letter)
 	fractol->i_max = 25;
 	fractol->move = TRUE;
 	fractol->refresh_color = FALSE;
+	fractol->power = 2.0L;
 	event_set(fractol);
 	return (fractol);
 }

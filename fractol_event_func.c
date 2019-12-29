@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:30:25 by fcodi             #+#    #+#             */
-/*   Updated: 2019/12/29 14:30:57 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/12/29 15:09:56 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,32 @@ void			change_view(t_fractol *fractol, int keycode)
 		fractol->view->attr.dx += dx;
 	if (keycode == KEY_RIGHTARROW)
 		fractol->view->attr.dx -= dx;
+	cycle(fractol);
+}
+
+void			change_power(t_fractol *fractol, int keycode)
+{
+	if (keycode == KEY_NUM_0)
+		fractol->power = 0;
+	if (keycode == KEY_NUM_1)
+		fractol->power = 1;
+	if (keycode == KEY_NUM_2)
+		fractol->power = 2;
+	if (keycode == KEY_NUM_3)
+		fractol->power = 3;
+	if (keycode == KEY_NUM_4)
+		fractol->power = 4;
+	if (keycode == KEY_NUM_5)
+		fractol->power = 5;
+	if (keycode == KEY_NUM_6)
+		fractol->power = 6;
+	if (keycode == KEY_NUM_7)
+		fractol->power = 7;
+	if (keycode == KEY_NUM_8)
+		fractol->power = 8;
+	if (keycode == KEY_NUM_9)
+		fractol->power = 9;
+	if (fractol->view->keyboard.key[KEY_NUM_MINUS] == TRUE)
+		fractol->power *= -1;
 	cycle(fractol);
 }
